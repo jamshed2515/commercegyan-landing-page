@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { verifiedFaqs } from '../data/faqs';
-import { ChevronDown, HelpCircle } from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
 
 export default function FAQAccordion() {
   const [openIndex, setOpenIndex] = useState(0);
@@ -10,51 +10,51 @@ export default function FAQAccordion() {
   };
 
   return (
-    <section id="faq" className="py-20 bg-slate-50 border-t border-slate-200/60">
+    <section id="faq" className="py-20 bg-[#F1EBDA] border-b border-[#DCD2B8]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="text-center space-y-3 mb-12">
-          <div className="inline-flex items-center gap-1.5 bg-[#00AEEF]/10 text-[#00AEEF] px-4 py-1.5 rounded-full font-bold text-xs uppercase tracking-wider">
-            <HelpCircle className="w-3.5 h-3.5" />
-            <span>Queries Resolved</span>
+        {/* Section Header */}
+        <div className="text-left space-y-3 mb-12">
+          <div className="font-mono text-xs font-bold text-[#B9832A] uppercase tracking-widest flex items-center gap-2">
+            <span className="w-6 h-px bg-[#B9832A]" />
+            <span>QUERIES RESOLVED</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A3B70]">
-            Frequently Asked Questions
+          <h2 className="font-display font-semibold text-3xl sm:text-4xl text-[#0F2C4C] tracking-tight">
+            Frequently asked questions
           </h2>
-          <p className="text-slate-500 text-sm font-medium">
-            Verified answers regarding admissions, batch sizes, test series, and course coverage.
+          <p className="text-[#5A6376] text-base font-normal leading-relaxed">
+            Verified answers on admissions, batch sizes, test series, and course coverage.
           </p>
         </div>
 
         {/* Accordion List */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           {verifiedFaqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div
                 key={idx}
-                className="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-xs transition-all duration-200"
+                className="bg-white rounded-[3px] border border-[#DCD2B8] overflow-hidden shadow-2xs transition-all duration-200"
               >
                 <button
                   onClick={() => toggleAccordion(idx)}
-                  className="w-full p-6 text-left flex items-center justify-between gap-4 font-bold text-base text-[#1A3B70] hover:text-[#00AEEF] transition-colors cursor-pointer"
+                  className="w-full p-5 text-left flex items-center justify-between gap-4 font-display font-semibold text-base sm:text-lg text-[#0F2C4C] hover:text-[#B9832A] transition-colors cursor-pointer"
                 >
-                  <span className="flex items-center gap-3">
-                    <span className="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-500 font-bold">
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded bg-[#F7F3E8] text-[#B9832A] border border-[#E7E0CC] shrink-0">
                       {faq.category}
                     </span>
                     <span>{faq.question}</span>
-                  </span>
-                  <ChevronDown
-                    className={`w-5 h-5 text-slate-400 shrink-0 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 text-[#00AEEF]' : ''
-                    }`}
-                  />
+                  </div>
+                  {isOpen ? (
+                    <Minus className="w-4 h-4 text-[#B9832A] shrink-0" />
+                  ) : (
+                    <Plus className="w-4 h-4 text-[#5A6376] shrink-0" />
+                  )}
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-6 text-xs sm:text-sm text-slate-600 font-normal leading-relaxed border-t border-slate-100 pt-4 bg-slate-50/50">
+                  <div className="px-5 pb-5 text-xs sm:text-sm text-[#5A6376] font-normal leading-relaxed border-t border-[#E7E0CC] pt-4 bg-[#F7F3E8]/40 font-sans">
                     {faq.answer}
                   </div>
                 )}

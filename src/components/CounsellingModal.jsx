@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, CheckCircle, Phone, MapPin, Send, MessageCircle } from 'lucide-react';
+import { X, CheckCircle, Send, MessageCircle } from 'lucide-react';
 
 export default function CounsellingModal({ isOpen, onClose, selectedProgram = '' }) {
   const [formData, setFormData] = useState({
@@ -32,44 +32,44 @@ export default function CounsellingModal({ isOpen, onClose, selectedProgram = ''
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="relative max-w-lg w-full bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-2xl animate-in fade-in zoom-in duration-200">
+    <div className="fixed inset-0 z-50 bg-[#0F2C4C]/80 backdrop-blur-md flex items-center justify-center p-4">
+      <div className="relative max-w-lg w-full bg-[#F7F3E8] rounded-[3px] overflow-hidden border border-[#DCD2B8] shadow-2xl">
         
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center transition-colors cursor-pointer"
+          className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-white/20 text-[#F4F1E4] hover:bg-white/40 flex items-center justify-center transition-colors cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Modal Header */}
-        <div className="bg-gradient-to-r from-[#1A3B70] to-[#0A192F] text-white p-6 sm:p-8 space-y-1">
-          <div className="inline-block bg-[#00AEEF]/20 text-[#FFCC00] text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
-            Free 1-on-1 Academic Session
+        <div className="bg-[#0F2C4C] text-[#F4F1E4] p-6 sm:p-7 space-y-1">
+          <div className="font-mono text-[10px] font-bold text-[#D9A441] uppercase tracking-widest">
+            FREE 1-ON-1 ACADEMIC SESSION
           </div>
-          <h3 className="text-2xl font-extrabold text-white">Book Free Counselling</h3>
-          <p className="text-xs text-slate-300 font-normal">
+          <h3 className="font-display font-semibold text-2xl text-[#F4F1E4]">Book Free Counselling</h3>
+          <p className="font-sans text-xs text-[#AFC0D6] font-normal">
             Speak directly with Tabarak Sir or counseling staff at Katrasgarh center.
           </p>
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 sm:p-8">
+        <div className="p-6 sm:p-7 font-sans">
           {submitted ? (
             <div className="text-center py-6 space-y-4">
-              <div className="w-14 h-14 mx-auto rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
-                <CheckCircle className="w-8 h-8" />
+              <div className="w-12 h-12 mx-auto rounded-full bg-[#2F7A5C]/15 text-[#2F7A5C] flex items-center justify-center border border-[#2F7A5C]">
+                <CheckCircle className="w-6 h-6" />
               </div>
-              <h4 className="text-xl font-extrabold text-[#1A3B70]">Counselling Requested!</h4>
-              <p className="text-xs text-slate-600 font-medium max-w-xs mx-auto">
-                Thank you <strong>{formData.name}</strong>. Our Katrasgarh team will call you at <strong>{formData.phone}</strong> shortly.
+              <h4 className="font-display font-bold text-xl text-[#0F2C4C]">Counselling Requested!</h4>
+              <p className="text-xs text-[#5A6376] font-medium max-w-xs mx-auto">
+                Thank you <strong className="text-[#0F2C4C]">{formData.name}</strong>. Our Katrasgarh team will call you at <strong className="text-[#0F2C4C]">{formData.phone}</strong> shortly.
               </p>
 
               <div className="pt-2">
                 <button
                   onClick={handleWhatsAppRedirect}
-                  className="w-full py-3.5 bg-[#25D366] hover:bg-[#1ebd59] text-white rounded-xl font-bold text-xs shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-3.5 bg-[#25D366] hover:bg-[#1ebd59] text-white rounded-[2px] font-mono text-xs font-bold uppercase shadow-md flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <MessageCircle className="w-4 h-4 fill-white" />
                   <span>Connect Instantly on WhatsApp (+91 8271365450)</span>
@@ -82,7 +82,7 @@ export default function CounsellingModal({ isOpen, onClose, selectedProgram = ''
                     setSubmitted(false);
                     onClose();
                   }}
-                  className="text-xs font-bold text-slate-500 hover:underline cursor-pointer"
+                  className="font-mono text-xs font-bold text-[#5A6376] hover:underline cursor-pointer"
                 >
                   Close Window
                 </button>
@@ -91,35 +91,35 @@ export default function CounsellingModal({ isOpen, onClose, selectedProgram = ''
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Your Full Name</label>
+                <label className="block font-mono text-xs font-bold text-[#0F2C4C] uppercase tracking-wider mb-1">Your Full Name</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g. Rahul Sharma"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#00AEEF] focus:bg-white transition-colors"
+                  className="w-full px-4 py-3 text-xs bg-white border border-[#DCD2B8] rounded-[2px] focus:outline-none focus:border-[#B9832A] transition-colors font-sans"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Phone Number</label>
+                <label className="block font-mono text-xs font-bold text-[#0F2C4C] uppercase tracking-wider mb-1">Phone Number</label>
                 <input
                   type="tel"
                   required
                   placeholder="e.g. 9876543210"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#00AEEF] focus:bg-white transition-colors"
+                  className="w-full px-4 py-3 text-xs bg-white border border-[#DCD2B8] rounded-[2px] focus:outline-none focus:border-[#B9832A] transition-colors font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Program of Interest</label>
+                <label className="block font-mono text-xs font-bold text-[#0F2C4C] uppercase tracking-wider mb-1">Program of Interest</label>
                 <select
                   value={formData.program}
                   onChange={(e) => setFormData({ ...formData, program: e.target.value })}
-                  className="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#00AEEF] focus:bg-white transition-colors"
+                  className="w-full px-4 py-3 text-xs bg-white border border-[#DCD2B8] rounded-[2px] focus:outline-none focus:border-[#B9832A] transition-colors font-sans"
                 >
                   <option value="Class 7-10 Academics">Class 7–10 School Academics</option>
                   <option value="Class 11 Commerce Boards">Class 11 Commerce Boards</option>
@@ -134,7 +134,7 @@ export default function CounsellingModal({ isOpen, onClose, selectedProgram = ''
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-3.5 bg-[#FFCC00] hover:bg-[#FFD633] text-[#1A3B70] font-black text-sm rounded-xl shadow-md transition-all active:scale-98 cursor-pointer flex items-center justify-center gap-2"
+                  className="w-full py-3.5 bg-[#D9A441] hover:bg-[#B9832A] text-[#0F2C4C] font-mono text-xs font-extrabold uppercase tracking-wider rounded-[2px] border border-[#B9832A] shadow-md transition-all active:scale-98 cursor-pointer flex items-center justify-center gap-2"
                 >
                   <Send className="w-4 h-4" />
                   <span>Confirm Counselling Request</span>
@@ -142,8 +142,8 @@ export default function CounsellingModal({ isOpen, onClose, selectedProgram = ''
               </div>
 
               <div className="text-center pt-2">
-                <p className="text-[11px] text-slate-400 font-medium">
-                  📍 Desk located behind Rajasthani Dharamshala, Katrasgarh
+                <p className="font-mono text-[11px] text-[#5A6376]">
+                  📍 Katrasgarh Centre • Behind Rajasthani Dharamshala
                 </p>
               </div>
             </form>

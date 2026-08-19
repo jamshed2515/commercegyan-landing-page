@@ -1,123 +1,180 @@
-import React from 'react';
-import { ArrowRight, BookOpen, Award, CheckCircle2, MessageSquare, Sparkles, Zap, Trophy } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
+
+const verifiedAchievers = [
+  { name: 'Pariniti', track: 'Class 12 Boards (91.2%)' },
+  { name: 'Kishore', track: 'Class 12 Boards (89.8%)' },
+  { name: 'Rinki', track: 'Class 12 Boards (89.0%)' },
+  { name: 'Subhadra', track: 'Class 12 Boards (87.4%)' },
+  { name: 'Uday', track: 'Class 12 Boards (85.4%)' }
+];
 
 export default function Hero({ onOpenCounselling }) {
-  return (
-    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50/50">
-      {/* Background Subtle Gradient Blobs */}
-      <div className="absolute top-12 right-0 w-[500px] h-[500px] rounded-full bg-[#00AEEF]/5 blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#1A3B70]/5 blur-3xl pointer-events-none -z-10" />
+  const [cycle, setCycle] = useState(0);
+  const [nameText, setNameText] = useState('');
+  const [trackText, setTrackText] = useState('');
+  const [showStamp, setShowStamp] = useState(false);
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+  useEffect(() => {
+    let isMounted = true;
+    const current = verifiedAchievers[cycle];
+    setShowStamp(false);
+    setNameText('');
+    setTrackText('');
+
+    let nameIdx = 0;
+    const nameInterval = setInterval(() => {
+      if (!isMounted) return;
+      nameIdx++;
+      setNameText(current.name.slice(0, nameIdx));
+      if (nameIdx >= current.name.length) {
+        clearInterval(nameInterval);
+
+        let trackIdx = 0;
+        const trackInterval = setInterval(() => {
+          if (!isMounted) return;
+          trackIdx++;
+          setTrackText(current.track.slice(0, trackIdx));
+          if (trackIdx >= current.track.length) {
+            clearInterval(trackInterval);
+            setTimeout(() => {
+              if (isMounted) setShowStamp(true);
+            }, 300);
+          }
+        }, 55);
+      }
+    }, 70);
+
+    const nextCycleTimer = setTimeout(() => {
+      if (isMounted) {
+        setCycle((prev) => (prev + 1) % verifiedAchievers.length);
+      }
+    }, 5500);
+
+    return () => {
+      isMounted = false;
+      clearInterval(nameInterval);
+      clearTimeout(nextCycleTimer);
+    };
+  }, [cycle]);
+
+  return (
+    <section className="relative pt-[108px] sm:pt-[116px] pb-[88px] overflow-hidden bg-[#F7F3E8] ledger-lines">
+      
+      <div className="max-w-[1180px] mx-auto px-6 relative z-10">
+        <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-[56px] items-center">
           
-          {/* Left Hero Content */}
-          <div className="lg:col-span-7 space-y-6 text-left">
+          {/* LEFT COLUMN: Editorial Value Prop & Headline */}
+          <div className="text-left">
             
-            {/* Admissions Badge */}
-            <div className="inline-flex items-center gap-2 bg-[#00AEEF]/10 border border-[#00AEEF]/20 rounded-full px-4 py-1.5 text-xs sm:text-sm font-bold text-[#1A3B70]">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#00AEEF] animate-pulse" />
-              <span>Admissions Open for Session 2026-27 • Katrasgarh</span>
+            {/* Monospace Eyebrow Badge */}
+            <div className="inline-flex items-center gap-2 bg-[#E7F1EC] border border-[#C8E0D3] rounded-full px-3 py-1.5 font-mono text-[11.5px] font-medium text-[#2F7A5C] uppercase tracking-[0.08em] mb-[26px]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2F7A5C] animate-pulse" />
+              <span>Admissions Open · Session 2026–27 · Katrasgarh</span>
             </div>
 
-            {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1A3B70] tracking-tight leading-[1.1]">
-              Master Commerce with{' '}
-              <span className="bg-gradient-to-r from-[#00AEEF] to-[#1A3B70] bg-clip-text text-transparent">
-                Conceptual Depth
-              </span>{' '}
-              & Personal Mentorship
+            {/* Headline with Fraunces Display Font */}
+            <h1 className="font-display font-semibold text-[38px] sm:text-[48px] lg:text-[58px] leading-[1.04] text-[#0F2C4C] tracking-[-0.02em] mb-[22px]">
+              Commerce, taught the way a ledger balances —{' '}
+              <em className="italic font-medium text-[#B9832A]">
+                every entry earns its place.
+              </em>
             </h1>
 
-            {/* Subtitle */}
-            <p className="text-slate-600 text-base sm:text-lg lg:text-xl font-normal leading-relaxed max-w-2xl">
-              Commerce Gyan provides structured, concept-driven preparation for School Academics (Class 7–10), Commerce Boards (Class 11 & 12), and CA, CMA & CS Professional Foundations in Katrasgarh.
+            {/* Editorial Subtitle */}
+            <p className="text-[#5A6376] text-[17px] leading-[1.65] max-w-[490px] mb-[32px] font-sans font-normal">
+              No rote memorisation, no overcrowded batches. <b className="text-[#1C2430] font-semibold">Structured, concept-first coaching</b> for School Academics (7–10), Commerce Boards (11–12), and CA / CMA / CS Foundations — led personally by Tabarak Sir.
             </p>
 
-            {/* Verified Differentiator Badges */}
-            <div className="grid grid-cols-2 gap-3 max-w-lg pt-1">
-              <div className="flex items-center gap-2.5 bg-white p-3 rounded-xl border border-slate-200/80 shadow-xs">
-                <div className="w-8 h-8 rounded-lg bg-[#00AEEF]/10 text-[#00AEEF] flex items-center justify-center font-bold">
-                  <Award className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="text-xs font-bold text-slate-800">98.2% Board Pass Rate</div>
-                  <div className="text-[11px] text-slate-500 font-medium">Consistent Toppers</div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5 bg-white p-3 rounded-xl border border-slate-200/80 shadow-xs">
-                <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
-                  <CheckCircle2 className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="text-xs font-bold text-slate-800">150+ CA & Board Toppers</div>
-                  <div className="text-[11px] text-slate-500 font-medium">Mentored by Faculty</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Call to Actions */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-3">
-              <a
-                href="#programs"
-                className="bg-[#FFCC00] hover:bg-[#FFD633] text-[#1A3B70] font-extrabold text-base px-7 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer active:scale-98"
-              >
-                <span>Explore Programs</span>
-                <ArrowRight className="w-5 h-5" />
-              </a>
-
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-[14px] mb-[22px]">
               <button
                 onClick={onOpenCounselling}
-                className="bg-white hover:bg-slate-50 text-slate-700 font-bold text-base px-7 py-4 rounded-xl border border-slate-200/90 shadow-xs hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                className="bg-[#D9A441] hover:bg-[#B9832A] text-[#0F2C4C] px-[26px] py-[15px] text-[14.5px] font-bold rounded-[2px] border border-[#B9832A] transition-all flex items-center gap-2.5 cursor-pointer font-sans shadow-xs hover:shadow-md"
               >
-                <MessageSquare className="w-5 h-5 text-[#00AEEF]" />
                 <span>Book Free Counselling</span>
+                <ArrowRight className="w-4 h-4 text-[#0F2C4C]" />
               </button>
+
+              <a
+                href="#programs"
+                className="bg-transparent hover:bg-[#0F2C4C] text-[#0F2C4C] hover:text-[#F4F1E4] px-[25px] py-[14px] text-[14.5px] font-semibold rounded-[2px] border border-[#0F2C4C] transition-all flex items-center gap-2.5 cursor-pointer font-sans"
+              >
+                <span>Explore Programs</span>
+              </a>
+            </div>
+
+            {/* Hero Note Below CTAs */}
+            <div className="font-mono text-[12px] text-[#5A6376] flex items-center gap-2">
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#2F7A5C] shrink-0" />
+              <span>Every result below is a real, verified student — see the register ↓</span>
             </div>
 
           </div>
 
-          {/* Right Hero Composition (Integrated Hero Media Block) */}
-          <div className="lg:col-span-5 relative mt-4 lg:mt-0">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
+          {/* RIGHT COLUMN: Signature Admission Register Ledger Card */}
+          <div className="relative">
+            
+            <div className="bg-white border border-[#DCD2B8] rounded-[4px] shadow-[0_30px_60px_-30px_rgba(15,44,76,0.35),0_2px_0_#D9A441] overflow-hidden relative">
               
-              {/* Main Card Image with Integrated Badges */}
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-900 aspect-[4/4.5] group">
-                <img
-                  src="/teacher.png"
-                  alt="Tabarak Sir - Commerce Gyan Lead Mentor"
-                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-103"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/95 via-[#0A192F]/20 to-transparent pointer-events-none" />
+              {/* Ledger Card Header */}
+              <div className="bg-[#0F2C4C] text-[#F4F1E4] px-[22px] py-[16px] flex items-center justify-between">
+                <span className="font-mono text-[11.5px] tracking-[0.1em] text-[#AFC0D6] uppercase font-semibold">Admission Register</span>
+                <span className="font-mono text-[12px] text-[#D9A441]">No. 2026 / {214 + cycle}</span>
+              </div>
 
-                {/* Integrated Navy Badge 1: Small Batch Learning (TOP-RIGHT inside image) */}
-                <div className="absolute top-4 right-4 z-20 flex items-center gap-2 bg-[#0D1B3D]/95 backdrop-blur-xs text-white px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-[14px] shadow-lg border border-white/15 text-xs sm:text-[12.5px] font-semibold tracking-tight">
-                  <Zap className="w-3.5 h-3.5 text-[#FFC107] shrink-0" />
-                  <span>Small Batch Learning</span>
+              {/* Ledger Card Body */}
+              <div className="px-[26px] pt-[26px] pb-[22px]">
+                <div className="grid grid-cols-[110px_1fr] gap-[14px] py-[13px] border-b border-dashed border-[#DCD2B8] items-baseline">
+                  <span className="font-mono text-[11px] tracking-[0.06em] text-[#5A6376] uppercase">Date</span>
+                  <span className="font-display text-[17px] font-medium text-[#0F2C4C]">19.08.2026</span>
                 </div>
 
-                {/* Integrated Navy Badge 2: Academic Excellence (LEFT SIDE with increased separation from name overlay) */}
-                <div className="absolute bottom-36 left-4 sm:bottom-40 sm:left-4 z-20 flex items-center gap-2 bg-[#0D1B3D]/95 backdrop-blur-xs text-white px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-[14px] shadow-lg border border-white/15 text-xs sm:text-[12.5px] font-semibold tracking-tight">
-                  <Trophy className="w-3.5 h-3.5 text-[#FFC107] shrink-0" />
-                  <span>Academic Excellence</span>
+                <div className="grid grid-cols-[110px_1fr] gap-[14px] py-[13px] border-b border-dashed border-[#DCD2B8] items-baseline min-h-[48px]">
+                  <span className="font-mono text-[11px] tracking-[0.06em] text-[#5A6376] uppercase">Applicant</span>
+                  <span className="font-display text-[17px] font-medium text-[#0F2C4C] flex items-center">
+                    {nameText}
+                    <span className="inline-block w-[2px] h-[16px] bg-[#B9832A] ml-0.5 animate-pulse" />
+                  </span>
                 </div>
 
-                {/* Content Overlay (Name & Credentials) */}
-                <div className="absolute bottom-5 left-4 right-4 sm:left-5 sm:right-5 text-white space-y-1 z-10">
-                  <div className="inline-block bg-[#FFCC00] text-[#1A3B70] text-[11px] sm:text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-xs">
-                    Tabarak Sir
+                <div className="grid grid-cols-[110px_1fr] gap-[14px] py-[13px] border-b border-dashed border-[#DCD2B8] items-baseline min-h-[48px]">
+                  <span className="font-mono text-[11px] tracking-[0.06em] text-[#5A6376] uppercase">Track</span>
+                  <span className="font-display text-[17px] font-medium text-[#0F2C4C] flex items-center">
+                    {trackText}
+                    <span className="inline-block w-[2px] h-[16px] bg-[#B9832A] ml-0.5 animate-pulse" />
+                  </span>
+                </div>
+
+                {/* Stamp Wrap */}
+                <div className="flex justify-end mt-[6px] h-[64px] items-center">
+                  <div
+                    className={`font-mono text-[14px] font-bold tracking-[0.08em] text-[#2F7A5C] border-[2.5px] border-[#2F7A5C] px-[16px] py-[8px] rounded-[4px] uppercase transition-all duration-500 ${
+                      showStamp ? 'scale-100 opacity-100 rotate-[-7deg]' : 'scale-0 opacity-0 rotate-0'
+                    }`}
+                  >
+                    CONFIRMED ✓
                   </div>
-                  <h3 className="text-base sm:text-lg font-extrabold text-white leading-snug">
-                    Lead Mentor & Founder
-                  </h3>
-                  <p className="text-[11px] sm:text-xs text-slate-300 font-medium leading-tight">
-                    NET Qualified • M.Com • B.Ed • CMA Inter Cleared
-                  </p>
+                </div>
+              </div>
+
+              {/* Ledger Card Footer */}
+              <div className="bg-[#F1EBDA] border-t border-[#DCD2B8] px-[26px] py-[14px] flex items-center justify-between">
+                <span className="font-mono text-[10.5px] text-[#5A6376] tracking-[0.06em]">Katrasgarh Branch · Folio 214</span>
+                <div className="flex items-center gap-[22px]">
+                  <div className="text-right">
+                    <b className="font-mono text-[16px] font-bold text-[#0F2C4C] block leading-tight">25–30</b>
+                    <span className="text-[10px] text-[#5A6376] uppercase tracking-[0.05em] block font-sans">Batch Size</span>
+                  </div>
+                  <div className="text-right">
+                    <b className="font-mono text-[16px] font-bold text-[#0F2C4C] block leading-tight">7+ yrs</b>
+                    <span className="text-[10px] text-[#5A6376] uppercase tracking-[0.05em] block font-sans">Mentor Exp.</span>
+                  </div>
                 </div>
               </div>
 
             </div>
+
           </div>
 
         </div>

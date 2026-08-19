@@ -1,75 +1,90 @@
 import React from 'react';
-import { BookOpen, FileText, Users, HelpCircle, Target, UserCheck } from 'lucide-react';
+import { BookOpen, FileText, Users, HelpCircle, UserCheck, ShieldCheck } from 'lucide-react';
 
 const differentiators = [
   {
+    code: '§ 01',
     icon: BookOpen,
     title: 'Concept-Based Teaching',
-    description: 'Deep analytical understanding over rote memorization to master core principles.'
+    description: 'Deep analytical understanding over rote memorization, so principles stay long after the exam.'
   },
   {
+    code: '§ 02',
     icon: Users,
     title: 'Small Batch Size',
-    description: 'Limited to 25–30 students per batch to ensure individual focus and participation.'
+    description: 'Capped at 25–30 students per batch so nobody gets left behind in a crowded room.'
   },
   {
+    code: '§ 03',
     icon: FileText,
     title: 'Weekly Evaluation',
-    description: 'Regular chapter-wise test series and full-syllabus mock exams strictly on board patterns.'
+    description: 'Regular chapter-wise tests and full-syllabus mock exams strictly on board patterns.'
   },
   {
+    code: '§ 04',
     icon: UserCheck,
     title: 'Personal Mentorship',
-    description: 'Direct guidance from Tabarak Sir to align academic progress with career goals.'
+    description: 'Direct guidance from Tabarak Sir, aligning academic progress with individual career goals.'
   },
   {
-    icon: FileText,
+    code: '§ 05',
+    icon: ShieldCheck,
     title: 'Standard Study Material',
     description: 'Printed topic summaries, formula lists, practice workbooks, and digital PDF notes.'
   },
   {
+    code: '§ 06',
     icon: HelpCircle,
     title: 'Dedicated Doubt Support',
-    description: 'Active doubt clearing desk to resolve queries before moving to advanced topics.'
+    description: 'An active doubt-clearing desk, ensuring queries get resolved before the next topic starts.'
   }
 ];
 
 export default function TrustValueStrip() {
   return (
-    <section id="differentiators" className="py-16 bg-white border-y border-slate-200/60">
+    <section id="why" className="py-20 bg-[#F1EBDA] border-b border-[#DCD2B8]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
-          <div className="inline-block bg-[#00AEEF]/10 text-[#00AEEF] px-3.5 py-1 rounded-full font-bold text-xs uppercase tracking-wider">
-            Why Commerce Gyan
+        <div className="max-w-2xl text-left mb-14 space-y-3">
+          <div className="font-mono text-xs font-bold text-[#B9832A] uppercase tracking-widest flex items-center gap-2">
+            <span className="w-6 h-px bg-[#B9832A]" />
+            <span>LEDGER OF CAPABILITIES</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1A3B70]">
-            Engineered for Academic Mastery & Retention
+          <h2 className="font-display font-semibold text-3xl sm:text-4xl text-[#0F2C4C] tracking-tight">
+            Engineered for academic mastery & retention
           </h2>
-          <p className="text-slate-500 text-sm font-medium">
-            Core teaching capabilities that set our students up for consistent board & competitive toppers.
+          <p className="text-[#5A6376] text-base font-normal leading-relaxed">
+            Six commitments that show up in every batch, every week — not just in the prospectus.
           </p>
         </div>
 
-        {/* 6 Grid Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* 6 Ledger Entry Cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#DCD2B8] border border-[#DCD2B8]">
           {differentiators.map((item, index) => {
             const IconComponent = item.icon;
             return (
               <div
                 key={index}
-                className="bg-slate-50/70 hover:bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 group"
+                className="bg-[#F7F3E8] hover:bg-white p-7 transition-all duration-200 group flex flex-col justify-between"
               >
-                <div className="w-12 h-12 rounded-xl bg-[#1A3B70]/5 group-hover:bg-[#00AEEF]/10 text-[#1A3B70] group-hover:text-[#00AEEF] flex items-center justify-center mb-4 transition-colors">
-                  <IconComponent className="w-6 h-6" />
+                <div>
+                  <span className="font-mono text-xs font-bold text-[#B9832A] tracking-wider block mb-4">
+                    {item.code}
+                  </span>
+                  
+                  <div className="w-10 h-10 rounded bg-[#0F2C4C]/5 text-[#0F2C4C] group-hover:text-[#B9832A] flex items-center justify-center mb-4 transition-colors">
+                    <IconComponent className="w-5 h-5" />
+                  </div>
+
+                  <h3 className="font-display font-bold text-lg text-[#0F2C4C] mb-2 group-hover:text-[#B9832A] transition-colors">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-xs text-[#5A6376] leading-relaxed font-normal">
+                    {item.description}
+                  </p>
                 </div>
-                <h3 className="text-base font-bold text-[#1A3B70] mb-1.5 group-hover:text-[#00AEEF] transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  {item.description}
-                </p>
               </div>
             );
           })}

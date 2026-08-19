@@ -1,17 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,500;1,9..144,600&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 :root {
-  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Fraunces', serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  --paper: #F7F3E8;
+  --paper-soft: #F1EBDA;
+  --ink: #0F2C4C;
+  --ink-deep: #0A2038;
+  --line: #DCD2B8;
+  --line-soft: #E7E0CC;
+  --gold: #D9A441;
+  --gold-deep: #B9832A;
+  --verified: #2F7A5C;
+  --debit: #A64B3F;
 
   --color-navy-dark: #0A192F;
   --color-navy-primary: #1A3B70;
-  --color-navy-light: #244B88;
   --color-cyan-accent: #00AEEF;
   --color-yellow-cta: #FFCC00;
-  --color-yellow-hover: #FFD633;
-  --color-bg-light: #FAFAFC;
 }
 
 html {
@@ -20,14 +29,38 @@ html {
 }
 
 body {
-  background-color: var(--color-bg-light);
-  color: #1E293B;
+  background-color: var(--paper);
+  color: #1C2430;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, .font-heading {
-  font-family: var(--font-heading);
+.font-display {
+  font-family: 'Fraunces', serif;
+}
+
+.font-mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.font-sans {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Ledger paper line texture */
+.ledger-lines {
+  background-image: repeating-linear-gradient(180deg, transparent, transparent 34px, rgba(220, 210, 184, 0.45) 35px);
+}
+
+/* Ledger stamp animation */
+@keyframes stamp-pop {
+  0% { transform: rotate(-7deg) scale(0); opacity: 0; }
+  70% { transform: rotate(-7deg) scale(1.1); opacity: 1; }
+  100% { transform: rotate(-7deg) scale(1); opacity: 1; }
+}
+
+.animate-stamp {
+  animation: stamp-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 /* Micro-animations */
@@ -36,32 +69,8 @@ h1, h2, h3, h4, .font-heading {
   50% { transform: translateY(-8px); }
 }
 
-@keyframes pulse-subtle {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
-}
-
 .animate-float {
   animation: float 4s ease-in-out infinite;
-}
-
-.animate-pulse-subtle {
-  animation: pulse-subtle 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Glassmorphism helpers */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
-}
-
-.glass-panel-dark {
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Custom Scrollbar */
@@ -69,12 +78,21 @@ h1, h2, h3, h4, .font-heading {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F1F5F9;
+  background: #F1EBDA;
 }
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
-  border-radius: 4px;
+  background: #DCD2B8;
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
+  background: #B9832A;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
