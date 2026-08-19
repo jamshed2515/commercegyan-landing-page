@@ -92,20 +92,20 @@ export default function Hero({ onOpenCounselling }) {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/95 via-[#0A192F]/20 to-transparent pointer-events-none" />
 
                 {/* Integrated Navy Badge 1: Small Batch Learning (TOP-RIGHT inside image) */}
-                <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-20 flex items-center gap-2 bg-[#0D1B3D] text-white px-3 py-2 rounded-[14px] shadow-md border border-white/10 text-xs sm:text-[13px] font-semibold tracking-tight">
+                <div className="absolute top-4 right-4 z-20 flex items-center gap-2 bg-[#0D1B3D]/95 backdrop-blur-xs text-white px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-[14px] shadow-lg border border-white/15 text-xs sm:text-[12.5px] font-semibold tracking-tight">
                   <Zap className="w-3.5 h-3.5 text-[#FFC107] shrink-0" />
                   <span>Small Batch Learning</span>
                 </div>
 
-                {/* Integrated Navy Badge 2: Academic Excellence (BOTTOM-LEFT inside image) */}
-                <div className="absolute bottom-24 left-3.5 sm:bottom-28 sm:left-4 z-20 flex items-center gap-2 bg-[#0D1B3D] text-white px-3 py-2 rounded-[14px] shadow-md border border-white/10 text-xs sm:text-[13px] font-semibold tracking-tight">
+                {/* Integrated Navy Badge 2: Academic Excellence (LEFT SIDE with increased separation from name overlay) */}
+                <div className="absolute bottom-36 left-4 sm:bottom-40 sm:left-4 z-20 flex items-center gap-2 bg-[#0D1B3D]/95 backdrop-blur-xs text-white px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-[14px] shadow-lg border border-white/15 text-xs sm:text-[12.5px] font-semibold tracking-tight">
                   <Trophy className="w-3.5 h-3.5 text-[#FFC107] shrink-0" />
                   <span>Academic Excellence</span>
                 </div>
 
                 {/* Content Overlay (Name & Credentials) */}
                 <div className="absolute bottom-5 left-4 right-4 sm:left-5 sm:right-5 text-white space-y-1 z-10">
-                  <div className="inline-block bg-[#FFCC00] text-[#1A3B70] text-[11px] sm:text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">
+                  <div className="inline-block bg-[#FFCC00] text-[#1A3B70] text-[11px] sm:text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-xs">
                     Tabarak Sir
                   </div>
                   <h3 className="text-base sm:text-lg font-extrabold text-white leading-snug">
