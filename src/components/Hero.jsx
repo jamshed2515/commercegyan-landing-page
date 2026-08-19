@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, BookOpen, Target, Users } from 'lucide-react';
 
-const verifiedAchievers = [
-  { name: 'Pariniti', track: 'Class 12 Boards (91.2%)' },
-  { name: 'Kishore', track: 'Class 12 Boards (89.8%)' },
-  { name: 'Rinki', track: 'Class 12 Boards (89.0%)' },
-  { name: 'Subhadra', track: 'Class 12 Boards (87.4%)' },
-  { name: 'Uday', track: 'Class 12 Boards (85.4%)' }
+const studentRecords = [
+  { name: 'Sheikh Aamir', date: '19.08.2026', track: 'Class 12 Boards' },
+  { name: 'Prabhat Mandal', date: '18.08.2026', track: 'CA Foundation' },
+  { name: 'Yash Raj', date: '15.08.2026', track: 'Class 11 Commerce' },
+  { name: 'Satyam Sharma', date: '17.08.2026', track: 'Class 12 Boards' },
+  { name: 'Prince Raj', date: '18.08.2026', track: 'CA Foundation' }
 ];
 
 export default function Hero({ onOpenCounselling }) {
@@ -17,7 +17,7 @@ export default function Hero({ onOpenCounselling }) {
 
   useEffect(() => {
     let isMounted = true;
-    const current = verifiedAchievers[cycle];
+    const current = studentRecords[cycle];
     setShowStamp(false);
     setNameText('');
     setTrackText('');
@@ -47,7 +47,7 @@ export default function Hero({ onOpenCounselling }) {
 
     const nextCycleTimer = setTimeout(() => {
       if (isMounted) {
-        setCycle((prev) => (prev + 1) % verifiedAchievers.length);
+        setCycle((prev) => (prev + 1) % studentRecords.length);
       }
     }, 5500);
 
@@ -57,6 +57,8 @@ export default function Hero({ onOpenCounselling }) {
       clearTimeout(nextCycleTimer);
     };
   }, [cycle]);
+
+  const currentRecord = studentRecords[cycle];
 
   return (
     <section className="relative pt-[108px] sm:pt-[116px] pb-[88px] overflow-hidden bg-[#F7F3E8] ledger-lines">
@@ -120,14 +122,14 @@ export default function Hero({ onOpenCounselling }) {
               {/* Ledger Card Header */}
               <div className="bg-[#0F2C4C] text-[#F4F1E4] px-[22px] py-[16px] flex items-center justify-between">
                 <span className="font-mono text-[11.5px] tracking-[0.1em] text-[#AFC0D6] uppercase font-semibold">Admission Register</span>
-                <span className="font-mono text-[12px] text-[#D9A441]">No. 2026 / {214 + cycle}</span>
+                <span className="font-mono text-[12px] text-[#D9A441] font-semibold uppercase tracking-[0.08em]">SESSION 2026–27</span>
               </div>
 
               {/* Ledger Card Body */}
               <div className="px-[26px] pt-[26px] pb-[22px]">
                 <div className="grid grid-cols-[110px_1fr] gap-[14px] py-[13px] border-b border-dashed border-[#DCD2B8] items-baseline">
                   <span className="font-mono text-[11px] tracking-[0.06em] text-[#5A6376] uppercase">Date</span>
-                  <span className="font-display text-[17px] font-medium text-[#0F2C4C]">19.08.2026</span>
+                  <span className="font-display text-[17px] font-medium text-[#0F2C4C]">{currentRecord.date}</span>
                 </div>
 
                 <div className="grid grid-cols-[110px_1fr] gap-[14px] py-[13px] border-b border-dashed border-[#DCD2B8] items-baseline min-h-[48px]">
@@ -158,19 +160,36 @@ export default function Hero({ onOpenCounselling }) {
                 </div>
               </div>
 
-              {/* Ledger Card Footer */}
-              <div className="bg-[#F1EBDA] border-t border-[#DCD2B8] px-[26px] py-[14px] flex items-center justify-between">
-                <span className="font-mono text-[10.5px] text-[#5A6376] tracking-[0.06em]">Katrasgarh Branch · Folio 214</span>
-                <div className="flex items-center gap-[22px]">
-                  <div className="text-right">
-                    <b className="font-mono text-[16px] font-bold text-[#0F2C4C] block leading-tight">25–30</b>
-                    <span className="text-[10px] text-[#5A6376] uppercase tracking-[0.05em] block font-sans">Batch Size</span>
-                  </div>
-                  <div className="text-right">
-                    <b className="font-mono text-[16px] font-bold text-[#0F2C4C] block leading-tight">7+ yrs</b>
-                    <span className="text-[10px] text-[#5A6376] uppercase tracking-[0.05em] block font-sans">Mentor Exp.</span>
+              {/* Ledger Card Footer (3-column feature icons matching user image) */}
+              <div className="bg-[#F1EBDA] border-t border-[#DCD2B8] px-5 py-3.5 grid grid-cols-3 gap-2 items-center">
+                
+                {/* Column 1: FOCUS */}
+                <div className="flex items-center gap-2.5">
+                  <BookOpen className="w-4 h-4 text-[#0F2C4C] shrink-0" />
+                  <div className="flex flex-col leading-tight">
+                    <span className="font-mono text-[9px] font-bold text-[#5A6376] uppercase tracking-wider">FOCUS</span>
+                    <span className="font-sans text-[11px] font-semibold text-[#1C2430]">Concept-First Learning</span>
                   </div>
                 </div>
+
+                {/* Column 2: APPROACH */}
+                <div className="flex items-center gap-2.5 pl-2 border-l border-[#DCD2B8]">
+                  <Target className="w-4 h-4 text-[#0F2C4C] shrink-0" />
+                  <div className="flex flex-col leading-tight">
+                    <span className="font-mono text-[9px] font-bold text-[#5A6376] uppercase tracking-wider">APPROACH</span>
+                    <span className="font-sans text-[11px] font-semibold text-[#1C2430]">Structured Coaching</span>
+                  </div>
+                </div>
+
+                {/* Column 3: BATCH TYPE */}
+                <div className="flex items-center gap-2.5 pl-2 border-l border-[#DCD2B8]">
+                  <Users className="w-4 h-4 text-[#0F2C4C] shrink-0" />
+                  <div className="flex flex-col leading-tight">
+                    <span className="font-mono text-[9px] font-bold text-[#5A6376] uppercase tracking-wider">BATCH TYPE</span>
+                    <span className="font-sans text-[11px] font-semibold text-[#1C2430]">Small Batch</span>
+                  </div>
+                </div>
+
               </div>
 
             </div>
