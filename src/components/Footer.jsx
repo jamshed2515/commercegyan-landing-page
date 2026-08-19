@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Phone, Mail, ExternalLink, ArrowUp } from 'lucide-react';
+import { MapPin, Phone, Mail, ExternalLink, ArrowUp, GraduationCap } from 'lucide-react';
 
 export default function Footer({ onTriggerEasterEgg }) {
   const scrollToTop = () => {
@@ -14,12 +14,19 @@ export default function Footer({ onTriggerEasterEgg }) {
           
           {/* Col 1: Brand Info */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <img
-                src="/logo.png"
-                alt="Commerce Gyan Logo"
-                className="h-10 w-auto bg-white p-1 rounded-lg"
-              />
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-full bg-[#1A3B70] text-[#FFCC00] flex items-center justify-center border border-[#FFCC00]/20 shrink-0">
+                <GraduationCap className="w-5 h-5 text-[#FFCC00]" />
+              </div>
+              <div className="flex flex-col justify-center leading-none">
+                <div className="flex items-baseline text-lg font-extrabold tracking-tight">
+                  <span className="text-white">Commerce</span>
+                  <span className="text-[#FFCC00] ml-1">Gyan</span>
+                </div>
+                <span className="text-[8px] font-bold text-slate-400 tracking-[0.14em] uppercase mt-0.5">
+                  LEARN | PRACTICE | SUCCEED
+                </span>
+              </div>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed font-normal">
               Commerce Gyan in Katrasgarh is the premier commerce coaching institute offering conceptual preparation for School Academics, Boards, and Professional CA, CMA & CS Foundation certifications.

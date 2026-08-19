@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, MapPin, Menu, X, ArrowRight } from 'lucide-react';
+import { Phone, MapPin, Menu, X, ArrowRight, GraduationCap } from 'lucide-react';
 
 export default function Navbar({ onOpenCounselling }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -28,13 +28,23 @@ export default function Navbar({ onOpenCounselling }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group">
-            <img
-              src="/logo.png"
-              alt="Commerce Gyan Logo"
-              className="h-10 lg:h-12 w-auto object-contain transition-transform group-hover:scale-102"
-            />
+          {/* Header Logo */}
+          <a href="#" className="flex items-center gap-2.5 group shrink-0 py-1">
+            {/* Circular Graduation Cap Monogram */}
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#1A3B70] text-[#FFCC00] flex items-center justify-center shadow-xs shrink-0 group-hover:scale-105 transition-transform border border-[#FFCC00]/20">
+              <GraduationCap className="w-5 h-5 text-[#FFCC00]" />
+            </div>
+            
+            {/* Brand Name & Tagline Lockup */}
+            <div className="flex flex-col justify-center leading-none">
+              <div className="flex items-baseline text-lg sm:text-xl font-extrabold tracking-tight">
+                <span className="text-[#1A3B70]">Commerce</span>
+                <span className="text-[#FFCC00] ml-1">Gyan</span>
+              </div>
+              <span className="text-[8px] sm:text-[9.5px] font-bold text-slate-500 tracking-[0.14em] uppercase mt-0.5">
+                LEARN | PRACTICE | SUCCEED
+              </span>
+            </div>
           </a>
 
           {/* Desktop Navigation */}

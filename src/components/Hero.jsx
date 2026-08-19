@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, BookOpen, Award, CheckCircle2, MessageSquare, Sparkles } from 'lucide-react';
+import { ArrowRight, BookOpen, Award, CheckCircle2, MessageSquare, Sparkles, Zap, Trophy } from 'lucide-react';
 
 export default function Hero({ onOpenCounselling }) {
   return (
@@ -78,52 +78,42 @@ export default function Hero({ onOpenCounselling }) {
 
           </div>
 
-          {/* Right Hero Composition (Editorial Media Block) */}
+          {/* Right Hero Composition (Integrated Hero Media Block) */}
           <div className="lg:col-span-5 relative mt-4 lg:mt-0">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               
-              {/* Main Card Image */}
+              {/* Main Card Image with Integrated Badges */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-900 aspect-[4/4.5] group">
                 <img
                   src="/teacher.png"
                   alt="Tabarak Sir - Commerce Gyan Lead Mentor"
                   className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-103"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/90 via-[#0A192F]/20 to-transparent" />
-                
-                {/* Content Overlay */}
-                <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
-                  <div className="inline-block bg-[#FFCC00] text-[#1A3B70] text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/95 via-[#0A192F]/20 to-transparent pointer-events-none" />
+
+                {/* Integrated Navy Badge 1: Small Batch Learning (TOP-RIGHT inside image) */}
+                <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-20 flex items-center gap-2 bg-[#0D1B3D] text-white px-3 py-2 rounded-[14px] shadow-md border border-white/10 text-xs sm:text-[13px] font-semibold tracking-tight">
+                  <Zap className="w-3.5 h-3.5 text-[#FFC107] shrink-0" />
+                  <span>Small Batch Learning</span>
+                </div>
+
+                {/* Integrated Navy Badge 2: Academic Excellence (BOTTOM-LEFT inside image) */}
+                <div className="absolute bottom-24 left-3.5 sm:bottom-28 sm:left-4 z-20 flex items-center gap-2 bg-[#0D1B3D] text-white px-3 py-2 rounded-[14px] shadow-md border border-white/10 text-xs sm:text-[13px] font-semibold tracking-tight">
+                  <Trophy className="w-3.5 h-3.5 text-[#FFC107] shrink-0" />
+                  <span>Academic Excellence</span>
+                </div>
+
+                {/* Content Overlay (Name & Credentials) */}
+                <div className="absolute bottom-5 left-4 right-4 sm:left-5 sm:right-5 text-white space-y-1 z-10">
+                  <div className="inline-block bg-[#FFCC00] text-[#1A3B70] text-[11px] sm:text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">
                     Tabarak Sir
                   </div>
-                  <h3 className="text-lg font-extrabold text-white">
+                  <h3 className="text-base sm:text-lg font-extrabold text-white leading-snug">
                     Lead Mentor & Founder
                   </h3>
-                  <p className="text-xs text-slate-300 font-medium">
+                  <p className="text-[11px] sm:text-xs text-slate-300 font-medium leading-tight">
                     NET Qualified • M.Com • B.Ed • CMA Inter Cleared
                   </p>
-                </div>
-              </div>
-
-              {/* Floating Badge 1: Top Performers */}
-              <div className="absolute -bottom-5 -left-4 bg-white/90 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200/80 shadow-xl flex items-center gap-3 animate-float">
-                <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-lg">
-                  🏆
-                </div>
-                <div>
-                  <div className="text-xs font-extrabold text-[#1A3B70]">Academic Excellence</div>
-                  <div className="text-[11px] text-slate-500 font-semibold">Verified Board Toppers 2025</div>
-                </div>
-              </div>
-
-              {/* Floating Badge 2: Small Batches */}
-              <div className="absolute -top-4 -right-4 bg-white/90 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200/80 shadow-xl flex items-center gap-3 animate-float [animation-delay:2s]">
-                <div className="w-9 h-9 rounded-xl bg-[#00AEEF]/10 text-[#00AEEF] flex items-center justify-center font-bold text-sm">
-                  ⚡
-                </div>
-                <div>
-                  <div className="text-xs font-extrabold text-[#1A3B70]">Small Batch Learning</div>
-                  <div className="text-[11px] text-slate-500 font-semibold">Max 25–30 Students</div>
                 </div>
               </div>
 
