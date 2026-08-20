@@ -25,14 +25,14 @@ export default function Navbar({ onOpenCounselling }) {
           : 'bg-[#F7F3E8]/85 backdrop-blur-sm border-b border-[#DCD2B8] py-4'
       }`}
     >
-      <div className="max-w-[1180px] mx-auto px-6">
+      <div className="max-w-[1180px] mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between">
           
           {/* Header Logo Lockup */}
-          <a href="#" className="flex items-center gap-2.5 group shrink-0 py-1">
+          <a href="#" className="flex items-center gap-2 sm:gap-2.5 group shrink-0 py-1">
             {/* Circular Monogram Mark */}
-            <div className="w-10 h-10 rounded-full bg-[#0F2C4C] text-[#D9A441] flex items-center justify-center shrink-0">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#0F2C4C] text-[#D9A441] flex items-center justify-center shrink-0">
+              <svg className="w-[18px] h-[18px] sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none">
                 <path d="M4 10L12 5L20 10L12 15L4 10Z" stroke="#D9A441" strokeWidth="1.6" strokeLinejoin="round" />
                 <path d="M7 12.5V17.5C7 17.5 9 19 12 19C15 19 17 17.5 17 17.5V12.5" stroke="#D9A441" strokeWidth="1.6" />
               </svg>
@@ -40,10 +40,10 @@ export default function Navbar({ onOpenCounselling }) {
             
             {/* Brand Name & Tagline Lockup */}
             <div className="flex flex-col justify-center leading-none">
-              <div className="font-display text-[19px] font-bold text-[#0F2C4C] tracking-tight">
+              <div className="font-display text-[17px] sm:text-[19px] font-bold text-[#0F2C4C] tracking-tight">
                 Commerce <span className="text-[#B9832A]">Gyan</span>
               </div>
-              <span className="font-mono text-[9px] font-semibold text-[#5A6376] tracking-[0.14em] uppercase mt-1">
+              <span className="font-mono text-[8.5px] sm:text-[9px] font-semibold text-[#5A6376] tracking-[0.12em] sm:tracking-[0.14em] uppercase mt-1">
                 Learn · Practice · Succeed
               </span>
             </div>
@@ -85,20 +85,20 @@ export default function Navbar({ onOpenCounselling }) {
           </div>
 
           {/* Mobile Menu Trigger */}
-          <div className="flex items-center gap-2 lg:hidden">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 lg:hidden">
             <button
               onClick={onOpenCounselling}
-              className="bg-[#0F2C4C] text-[#F4F1E4] text-[11px] font-semibold px-2.5 py-1.5 rounded-[2px] font-sans"
+              className="bg-[#0F2C4C] hover:bg-[#132F52] text-[#F4F1E4] text-[10.5px] sm:text-[11px] font-semibold px-2 py-1.5 sm:px-2.5 rounded-[2px] font-sans transition-colors shrink-0 whitespace-nowrap"
             >
               Counselling
             </button>
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-1.5 text-[#0F2C4C] hover:bg-[#F1EBDA] rounded transition-colors"
+              className="w-11 h-11 flex items-center justify-center text-[#0F2C4C] hover:bg-[#F1EBDA] rounded transition-colors shrink-0 -mr-1.5"
               aria-label="Toggle Navigation Menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </button>
           </div>
 
@@ -107,7 +107,7 @@ export default function Navbar({ onOpenCounselling }) {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#F7F3E8] border-b border-[#DCD2B8] px-6 pt-3 pb-6 space-y-3 shadow-xl">
+        <div className="lg:hidden bg-[#F7F3E8] border-b border-[#DCD2B8] px-4 sm:px-6 pt-3 pb-6 space-y-3 shadow-xl">
           <nav className="flex flex-col space-y-2 font-sans font-medium text-[14px] text-[#1C2430]">
             <a
               href="#why"
